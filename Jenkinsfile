@@ -6,6 +6,12 @@ pipeline{
                 checkout scm
             }
         }
+        stage("Install NPM") {
+            steps{
+                sh 'sudo apt install npm'
+                echo "Install npm successfully"
+            }
+        }
         stage("Install dependencies"){
             steps{
                 sh 'npm install'
