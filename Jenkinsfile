@@ -1,21 +1,21 @@
 pipeline{
-    agent any
-    tools {nodejs "my-nodejs"}
+    agent any    
     stages{
-        stage("Build"){
+        stage("checkout") {
             steps{
-                nodejs("my-nodejs") {
-                    sh 'npm install'
-                    sh 'npm build'
-                }
+                checkout scm
             }
         }
-        stage("Start"){
+        stage("Install dependencies"){
             steps{
-                nodejs("my-nodejs") {
-                    sh 'npm start'
-                }
-                echo "App started successfully"
+                sh 'npm install'
+                echo "Install dependencies successfully"
+            }
+        }
+        stage("Build"){
+            steps{
+                sh 'npm run build'
+                echo "App built successfully"
             }
         }
     }
