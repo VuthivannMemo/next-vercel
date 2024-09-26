@@ -1,17 +1,8 @@
 pipeline{
-    agent any    
+    agent any   
+
+    tools {nodejs "node"}
     stages{
-        stage("checkout") {
-            steps{
-                checkout scm
-            }
-        }
-        stage("Install NPM") {
-            steps{
-                sh 'sudo apt install npm'
-                echo "Install npm successfully"
-            }
-        }
         stage("Install dependencies"){
             steps{
                 sh 'npm install'
